@@ -73,6 +73,7 @@ def get_command_name(command_id):
 def handle_mavlink_messages():
     global mavlink_data, message_timestamps, detected_systems, request_data_streams
     while True:
+        sleep(0.0000000001)
         try:
             msg = mav_connection.recv_match(blocking=False)
             if not msg:
