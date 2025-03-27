@@ -1,65 +1,62 @@
-# Drone MAVLink Dashboard
+# MAVLink Drone Monitoring System
 
-This project is a Flask-based web dashboard for monitoring MAVLink messages from a drone. It provides real-time data on
-detected MAVLink systems, message frequencies, and REQUEST_DATA_STREAM messages.
+## Overview
+
+This project provides a real-time MAVLink-based drone monitoring system using Flask and pymavlink. It establishes a
+connection with a MAVLink-enabled drone, listens for messages, and visualizes data such as message frequencies, detected
+systems, and requested data streams via a web interface.
 
 ## Features
 
-- **Real-time MAVLink message monitoring**
-- **Displays detected MAVLink systems**
-- **Shows message frequencies with status indicators**
-- **Captures REQUEST_DATA_STREAM messages**
-- **Automatically reconnects to MAVLink on failure**
-- **Provides a reset button to clear data**
-
-## Requirements
-
-- Python 3.x
-- Flask
-- pymavlink
-- jQuery (for frontend updates)
+- **MAVLink Connection:** Automatically connects to a MAVLink system and listens for messages.
+- **Live Data Display:** Displays detected MAVLink systems and components.
+- **Message Frequency Monitoring:** Tracks expected vs. actual frequencies of MAVLink messages.
+- **REQUEST_DATA_STREAM Capturing:** Logs data stream requests from the drone.
+- **Web Interface:** Provides a real-time dashboard for monitoring.
+- **Reset Functionality:** Allows resetting the collected MAVLink data.
 
 ## Installation
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/mavlink-dashboard.git
-   cd mavlink-dashboard
-   ```
-2. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Configure the MAVLink connection in `config.py`:
-   ```python
-   DRONE_CONNECTION = 'udp:127.0.0.1:14550'  # Adjust as needed
-   ```
+### Prerequisites
 
-## Running the Dashboard
+Ensure you have the following installed:
 
-Start the Flask server:
+- Python 3.8+
+- pip
+- MAVProxy or any MAVLink-compatible communication method
+
+### Dependencies
+
+Install the required Python packages:
+
+```sh
+pip install -r requirements.txt
+```
+
+## Configuration
+
+Modify the `config.py` file to set the correct drone connection string:
+
+```python
+DRONE_CONNECTION = "udp:127.0.0.1:14550"  # Adjust as needed
+```
+
+## Running the Application
+
+Run the Flask server with:
 
 ```sh
 python main.py
 ```
 
-Access the dashboard in your web browser at:
+This will start a web server on `http://localhost:5001/`.
 
-```
-http://localhost:5001
-```
+## Web Interface
 
-## API Endpoints
-
-- `/` - Main web dashboard
-- `/drone_stats_data` - Returns real-time MAVLink stats as JSON
-- `/reset` - Resets all stored data (POST request)
-
-## Contributing
-
-Pull requests are welcome! Please open an issue first to discuss any major changes.
+- **`/drone_stats`**: Displays real-time MAVLink message frequencies, detected systems, and data stream requests.
+- **`/reset`** (POST): Resets stored MAVLink data.
 
 ## License
 
-MIT License
+This project is released under the MIT License.
 
